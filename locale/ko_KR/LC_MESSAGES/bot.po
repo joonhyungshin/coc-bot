@@ -1,0 +1,46 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-03 02:15+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: utf-8\n"
+
+#: bot.py:14
+msgid "Logging in to COC API..."
+msgstr "클래시 오브 클랜 API에 로그인하는 중..."
+
+#: bot.py:46
+msgid "{} joined the clan! :tada:"
+msgstr "{}님이 클랜에 가입했습니다! :tada:"
+
+#: bot.py:51
+msgid "{} left the clan."
+msgstr "{}님이 클랜을 탈퇴했습니다."
+
+#: bot.py:85
+msgid "Clan war is less than an hour left! :rocket:"
+msgstr "클랜전이 한 시간도 남지 않았어요! :rocket:"
+
+#: bot.py:92
+msgid "Fetching clan data..."
+msgstr "클랜 데이터를 불러오는 중..."
+
+#: bot.py:96
+msgid "Logging in to Discord API..."
+msgstr "Discord API에 로그인하는 중..."
+
+#: bot.py:107
+msgid "Initialization complete! Starting the bot..."
+msgstr "초기화가 완료되었습니다. 봇을 시작합니다."
