@@ -44,3 +44,7 @@ msgstr "Discord API에 로그인하는 중..."
 #: bot.py:107
 msgid "Initialization complete! Starting the bot..."
 msgstr "초기화가 완료되었습니다. 봇을 시작합니다."
+
+#: bot.py:108
+msgid "Hello! Clash of Clans Bot is online."
+msgstr "안녕하세요! 저는 클래시 오브 클랜 봇입니다."

@@ -105,6 +105,7 @@ def main():
     asyncio.ensure_future(watch_clan_war())
 
     print(_('Initialization complete! Starting the bot...'))
+    asyncio.ensure_future(send_message(topology_id, general_id, _('Hello! Clash of Clans Bot is online.')))
     try:
         loop.run_forever()
     except KeyboardInterrupt:
