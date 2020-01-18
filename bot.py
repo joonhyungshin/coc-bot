@@ -29,6 +29,7 @@ dc_client = discord.Client()
 
 topology_id = 653614701476839450
 general_id = 653614701476839453
+fellow_id = 662257591581147152
 
 
 async def wait_until_ready():
@@ -50,6 +51,28 @@ async def on_clan_member_join(member, clan):
 @coc_client.event
 async def on_clan_member_leave(member, clan):
     await send_message(topology_id, general_id, _('{} left the clan.').format(member.name))
+
+
+@coc_client.event
+async def on_war_state_change(current_state, war):
+    if current_state == 'warEnded':
+        end_msg = _('We won the war! :tada:') \
+            if war.status == 'won' else _('We can be better next time! :slight_smile:')
+        statistics = '\n'.join(
+            [
+                '**{}** : {} :star: - {}% ({}/2)'.format(
+                    member.name,
+                    sum(attack.stars for attack in member.attacks),
+                    int(sum(attack.destruction for attack in member.attacks) / 2),
+                    len(member.attacks)
+                ) for member in war.clan.members
+            ]
+        )
+        await send_message(
+            topology_id,
+            general_id,
+            '{}\n{}'.format(end_msg, statistics)
+        )
 
 
 async def watch_clan_war():
@@ -121,6 +144,7 @@ def main():
     members_last_updated = {player.tag: datetime.datetime.now() for player in clan.members}
 
     coc_client.add_clan_update(clan_tag)
+    coc_client.add_war_update(clan_tag)
     asyncio.ensure_future(watch_clan_war_periodic())
 
     print(_('Initialization complete! Starting the bot...'))
