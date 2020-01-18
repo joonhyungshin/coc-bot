@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-03 02:15+0900\n"
+"POT-Creation-Date: 2020-01-18 22:55+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,34 +17,38 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: utf-8\n"
 
-#: bot.py:14
+#: bot.py:15
 msgid "Logging in to COC API..."
 msgstr "클래시 오브 클랜 API에 로그인하는 중..."
 
-#: bot.py:46
+#: bot.py:47
 msgid "{} joined the clan! :tada:"
 msgstr "{}님이 클랜에 가입했습니다! :tada:"
 
-#: bot.py:51
+#: bot.py:52
 msgid "{} left the clan."
 msgstr "{}님이 클랜을 탈퇴했습니다."
 
-#: bot.py:85
-msgid "Clan war is less than an hour left! :rocket:"
-msgstr "클랜전이 한 시간도 남지 않았어요! :rocket:"
+#: bot.py:100
+msgid ""
+"Clan war is less than an hour left! :rocket:\n"
+"{}"
+msgstr ""
+"클랜전이 한 시간도 남지 않았어요! :rocket:\n"
+"{}"
 
-#: bot.py:92
+#: bot.py:111
 msgid "Fetching clan data..."
 msgstr "클랜 데이터를 불러오는 중..."
 
-#: bot.py:96
+#: bot.py:115
 msgid "Logging in to Discord API..."
 msgstr "Discord API에 로그인하는 중..."
 
-#: bot.py:107
+#: bot.py:126
 msgid "Initialization complete! Starting the bot..."
 msgstr "초기화가 완료되었습니다. 봇을 시작합니다."
 
-#: bot.py:108
+#: bot.py:127
 msgid "Hello! Clash of Clans Bot is online."
 msgstr "안녕하세요! 저는 클래시 오브 클랜 봇입니다."

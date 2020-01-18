@@ -5,6 +5,7 @@ import os
 
 import coc
 import discord
+from coc.errors import NotFound
 
 
 t = gettext.translation('bot', 'locale', languages=['ko'], fallback=True)
@@ -51,27 +52,33 @@ async def on_clan_member_leave(member, clan):
     await send_message(topology_id, general_id, _('{} left the clan.').format(member.name))
 
 
-async def watch_clan_war(timeout=600):
+async def watch_clan_war():
     # Check for regular clan war
-    clan_war = await coc_client.get_clan_war(clan_tag)
-    if clan_war.status != 'inWar':
-        # Check for league war
-        league_group = await coc_client.get_league_group(clan_tag)
-        war_coro = []
-        for war_round in league_group.rounds:
-            for war_id in war_round:
-                if war_id != '#0':
-                    war_coro.append(coc_client.get_league_war(war_id))
-        war_list = await asyncio.gather(*war_coro)
-        for war in war_list:
-            if war.state == 'inWar':
-                if war.clan.tag == clan_tag or war.opponent.tag == clan_tag:
-                    clan_war = war
-                    break
+    try:
+        clan_war = await coc_client.get_clan_war(clan_tag)
+        if clan_war.state != 'inWar':
+            # Check for league war
+            league_group = await coc_client.get_league_group(clan_tag)
+            war_coro = []
+            for war_round in league_group.rounds:
+                for war_id in war_round:
+                    if war_id != '#0':
+                        war_coro.append(coc_client.get_league_war(war_id))
+            war_list = await asyncio.gather(*war_coro)
+            for war in war_list:
+                if war.state == 'inWar':
+                    if war.clan.tag == clan_tag or war.opponent.tag == clan_tag:
+                        clan_war = war
+                        war_clan = war.clan if war.clan.tag == clan_tag else war.opponent
+                        break
+            else:
+                # Currently not in war
+                return
         else:
-            # Currently not in war
-            await asyncio.sleep(timeout)
-            await watch_clan_war(timeout)
+            war_clan = clan_war.clan
+    except NotFound:
+        # Currently not in war
+        return
 
     now = datetime.datetime.utcnow()
     war_end = clan_war.end_time.time
@@ -82,10 +89,22 @@ async def watch_clan_war(timeout=600):
     if war_end - now < datetime.timedelta(hours=1):
         if recently_notified_war_clans != war_clans:
             recently_notified_war_clans = war_clans
-            await send_message(topology_id, general_id, _('Clan war is less than an hour left! :rocket:'))
+            unused_members = {member.name for member in war_clan.members if not member.attacks}
+            discord_members_mentions = ' '.join(
+                ['<@{}>'.format(member.id)
+                 for member in dc_client.get_guild(topology_id).members if member.nick in unused_members]
+            )
+            await send_message(
+                topology_id,
+                general_id,
+                _('Clan war is less than an hour left! :rocket:\n{}'.format(discord_members_mentions))
+            )
 
-    await asyncio.sleep(timeout)
-    await watch_clan_war(timeout)
+
+async def watch_clan_war_periodic(timeout=600):
+    while True:
+        await watch_clan_war()
+        await asyncio.sleep(timeout)
 
 
 def main():
@@ -102,7 +121,7 @@ def main():
     members_last_updated = {player.tag: datetime.datetime.now() for player in clan.members}
 
     coc_client.add_clan_update(clan_tag)
-    asyncio.ensure_future(watch_clan_war())
+    asyncio.ensure_future(watch_clan_war_periodic())
 
     print(_('Initialization complete! Starting the bot...'))
     asyncio.ensure_future(send_message(topology_id, general_id, _('Hello! Clash of Clans Bot is online.')))
