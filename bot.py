@@ -65,7 +65,11 @@ async def on_war_state_change(current_state, war):
                     sum(attack.stars for attack in member.attacks),
                     int(sum(attack.destruction for attack in member.attacks) / 2),
                     len(member.attacks)
-                ) for member in war.clan.members
+                ) for member in sorted(war.clan.members,
+                                       key=lambda member: (
+                                           sum(attack.stars for attack in member.attacks),
+                                           sum(attack.destruction for attack in member.attacks),
+                                       ), reverse=True)
             ]
         )
         await send_message(

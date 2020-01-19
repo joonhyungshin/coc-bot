@@ -37,7 +37,7 @@ msgstr "클랜전에서 승리했어요! :tada:"
 msgid "We can be better next time! :slight_smile:"
 msgstr "클랜전에서 졌지만 괜찮아요! 다음에 잘하면 되죠. :slight_smile:"
 
-#: bot.py:123
+#: bot.py:127
 msgid ""
 "Clan war is less than an hour left! :rocket:\n"
 "{}"
@@ -45,18 +45,18 @@ msgstr ""
 "클랜전이 한 시간도 남지 않았어요! :rocket:\n"
 "{}"
 
-#: bot.py:134
+#: bot.py:138
 msgid "Fetching clan data..."
 msgstr "클랜 데이터를 불러오는 중..."
 
-#: bot.py:138
+#: bot.py:142
 msgid "Logging in to Discord API..."
 msgstr "Discord API에 로그인하는 중..."
 
-#: bot.py:150
+#: bot.py:154
 msgid "Initialization complete! Starting the bot..."
 msgstr "초기화가 완료되었습니다. 봇을 시작합니다."
 
-#: bot.py:151
+#: bot.py:155
 msgid "Hello! Clash of Clans Bot is online."
 msgstr "안녕하세요! 저는 클래시 오브 클랜 봇입니다."
