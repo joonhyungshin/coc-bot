@@ -124,7 +124,7 @@ async def watch_clan_war():
             await send_message(
                 topology_id,
                 general_id,
-                _('Clan war is less than an hour left! :rocket:\n{}'.format(discord_members_mentions))
+                _('Clan war is less than an hour left! :rocket:\n{}').format(discord_members_mentions)
             )
 
 
