@@ -38,12 +38,8 @@ msgid "We can be better next time! :slight_smile:"
 msgstr "클랜전에서 졌지만 괜찮아요! 다음에 잘하면 되죠. :slight_smile:"
 
 #: bot.py:127
-msgid ""
-"Clan war is less than an hour left! :rocket:\n"
-"{}"
-msgstr ""
-"클랜전이 한 시간도 남지 않았어요! :rocket:\n"
-"{}"
+msgid "Clan war is less than an hour left! :rocket:\n{}"
+msgstr "클랜전이 한 시간도 남지 않았어요! :rocket:\n{}"
 
 #: bot.py:138
 msgid "Fetching clan data..."
