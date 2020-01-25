@@ -30,6 +30,7 @@ dc_client = discord.Client()
 topology_id = 653614701476839450
 general_id = 653614701476839453
 fellow_id = 662257591581147152
+developer_id = 668082046131765248
 
 
 async def wait_until_ready():
@@ -76,6 +77,18 @@ async def on_war_state_change(current_state, war):
             topology_id,
             general_id,
             '{}\n{}'.format(end_msg, statistics)
+        )
+    elif current_state == 'preparation':
+        await send_message(
+            topology_id,
+            general_id,
+            _('War versus clan **{}** preparation has started!').format(war.opponent.name)
+        )
+    elif current_state == 'inWar':
+        await send_message(
+            topology_id,
+            general_id,
+            _('War versus clan **{}** has started! :rocket:').format(war.opponent.name)
         )
 
 
@@ -152,7 +165,7 @@ def main():
     asyncio.ensure_future(watch_clan_war_periodic())
 
     print(_('Initialization complete! Starting the bot...'))
-    asyncio.ensure_future(send_message(topology_id, general_id, _('Hello! Clash of Clans Bot is online.')))
+    asyncio.ensure_future(send_message(topology_id, developer_id, _('Hello! Clash of Clans Bot is online.')))
     try:
         loop.run_forever()
     except KeyboardInterrupt:
